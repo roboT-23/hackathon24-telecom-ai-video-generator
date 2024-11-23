@@ -1,34 +1,62 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Style from '@/views/StyleView.vue'
-import Home from '@/views/HomeView.vue'
+// import Home from '@/views/HomeView.vue'
+import AppHome from '@/views/app/HomeView.vue'
+import VideosView from '@/views/app/VideosView.vue'
+import IdeasView from '@/views/app/IdeasView.vue'
+import PromptsView from '@/views/app/PromptsView.vue'
 
 const routes = [
-  {
-    meta: {
-      title: 'Select style'
-    },
-    path: '/',
-    name: 'style',
-    component: Style
-  },
+  // {
+  //   meta: {
+  //     title: 'Select style'
+  //   },
+  //   path: '/',
+  //   name: 'style',
+  //   component: Style
+  // },
   {
     // Document title tag
     // We combine it with defaultDocumentTitle set in `src/main.js` on router.afterEach hook
     meta: {
       title: 'Dashboard'
     },
-    path: '/dashboard',
+    path: '/',
     name: 'dashboard',
-    component: Home
+    component: AppHome
   },
   {
     meta: {
-      title: 'Tables'
+      title: 'Ideas'
     },
-    path: '/tables',
-    name: 'tables',
-    component: () => import('@/views/TablesView.vue')
+    path: '/ideas',
+    name: 'ideas',
+    component: IdeasView
   },
+  {
+    meta: {
+      title: 'Videos'
+    },
+    path: '/videos',
+    name: 'videos',
+    component: VideosView
+  },
+  {
+    meta: {
+      title: 'Prompts'
+    },
+    path: '/prompts',
+    name: 'prompts',
+    component: PromptsView
+  },
+  // {
+  //   meta: {
+  //     title: 'Tables'
+  //   },
+  //   path: '/tables',
+  //   name: 'tables',
+  //   component: () => import('@/views/TablesView.vue')
+  // },
   {
     meta: {
       title: 'Forms'

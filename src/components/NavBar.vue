@@ -28,12 +28,12 @@ const isMenuNavBarActive = ref(false)
   >
     <div class="flex lg:items-stretch" :class="containerMaxW">
       <div class="flex flex-1 items-stretch h-14">
-        <slot />
+<!--        <slot />-->
       </div>
       <div class="flex-none items-stretch flex h-14 lg:hidden">
-        <NavBarItemPlain @click.prevent="isMenuNavBarActive = !isMenuNavBarActive">
-          <BaseIcon :path="isMenuNavBarActive ? mdiClose : mdiDotsVertical" size="24" />
-        </NavBarItemPlain>
+<!--        <NavBarItemPlain @click.prevent="isMenuNavBarActive = !isMenuNavBarActive">-->
+<!--          <BaseIcon :path="isMenuNavBarActive ? mdiClose : mdiDotsVertical" size="24" />-->
+<!--        </NavBarItemPlain>-->
       </div>
       <div
         class="max-h-screen-menu overflow-y-auto lg:overflow-visible absolute w-screen top-14 left-0 bg-gray-50 shadow-lg lg:w-auto lg:flex lg:static lg:shadow-none dark:bg-slate-800"

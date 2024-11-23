@@ -30,7 +30,7 @@ const submit = () => {
 <template>
   <LayoutGuest>
     <Head title="Secure Area" />
-    
+
     <SectionFullScreen
       v-slot="{ cardClass }"
       bg="purplePink"

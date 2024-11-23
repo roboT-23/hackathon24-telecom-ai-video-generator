@@ -43,7 +43,7 @@ const submit = () => {
       >
         <FormValidationErrors />
 
-        <NotificationBarInCard 
+        <NotificationBarInCard
           v-if="status"
           color="info"
         >

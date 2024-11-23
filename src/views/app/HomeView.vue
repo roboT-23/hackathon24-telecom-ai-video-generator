@@ -22,7 +22,7 @@ import CardBoxTransaction from '@/components/CardBoxTransaction.vue'
 import CardBoxClient from '@/components/CardBoxClient.vue'
 import LayoutAuthenticated from '@/layouts/LayoutAuthenticated.vue'
 import SectionTitleLineWithButton from '@/components/SectionTitleLineWithButton.vue'
-import SectionBannerStarOnGitHub from '@/components/SectionBannerStarOnGitHub.vue'
+// import SectionBannerStarOnGitHub from '@/components/SectionBannerStarOnGitHub.vue'
 
 const chartData = ref(null)
 
@@ -57,32 +57,34 @@ const transactionBarItems = computed(() => mainStore.history)
       </SectionTitleLineWithButton>
 
       <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">
-        <CardBoxWidget
-          trend="12%"
-          trend-type="up"
-          color="text-emerald-500"
-          :icon="mdiAccountMultiple"
-          :number="512"
-          label="Clients"
-        />
-        <CardBoxWidget
-          trend="12%"
-          trend-type="down"
-          color="text-blue-500"
-          :icon="mdiCartOutline"
-          :number="7770"
-          prefix="$"
-          label="Sales"
-        />
-        <CardBoxWidget
-          trend="Overflow"
-          trend-type="alert"
-          color="text-red-500"
-          :icon="mdiChartTimelineVariant"
-          :number="256"
-          suffix="%"
-          label="Performance"
-        />
+          <CardBoxWidget
+            trend="12%"
+            trend-type="up"
+            color="text-emerald-500"
+            :icon="mdiAccountMultiple"
+            :number="videoCount"
+            prefix="#"
+            href="/videos"
+          label="Videos"
+          />
+<!--        <CardBoxWidget-->
+<!--          trend="12%"-->
+<!--          trend-type="down"-->
+<!--          color="text-blue-500"-->
+<!--          :icon="mdiCartOutline"-->
+<!--          :number="7770"-->
+<!--          prefix="$"-->
+<!--          label="Sales"-->
+<!--        />-->
+<!--        <CardBoxWidget-->
+<!--          trend="Overflow"-->
+<!--          trend-type="alert"-->
+<!--          color="text-red-500"-->
+<!--          :icon="mdiChartTimelineVariant"-->
+<!--          :number="256"-->
+<!--          suffix="%"-->
+<!--          label="Performance"-->
+<!--        />-->
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
@@ -134,3 +136,36 @@ const transactionBarItems = computed(() => mainStore.history)
     </SectionMain>
   </LayoutAuthenticated>
 </template>
+<script>
+import axios from 'axios';
+import CardBoxWidget from '@/components/CardBoxWidget.vue';
+
+export default {
+  components: {
+    CardBoxWidget
+  },
+  data() {
+    return {
+      videoCount: 0  // Počet videí, ktorý načítame z API
+    };
+  },
+  mounted() {
+    // Načítame počet videí po načítaní komponenty
+    this.getVideoCount();
+  },
+  methods: {
+    async getVideoCount() {
+      try {
+        const response = await axios.get('/api/videos/count');
+        this.videoCount = response.data.total_videos; // Ulož počet videí do `videoCount`
+      } catch (error) {
+        console.error('Error fetching video count:', error);
+      }
+    }
+  }
+};
+</script>
+
+<!--<style scoped>-->
+<!--/* Prípadne doplň potrebný CSS */-->
+<!--</style>-->
