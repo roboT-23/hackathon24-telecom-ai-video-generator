@@ -36,6 +36,12 @@ export default [
     label: 'Prompts',
     icon: mdiTextBoxEditOutline
   },
+  {
+    to: '/wizard',
+    label: 'Wizard',
+    icon: mdiTextBoxEditOutline
+  },
+
   // {
   //   to: '/tables',
   //   label: 'Tables',

@@ -5,6 +5,7 @@ import AppHome from '@/views/app/HomeView.vue'
 import VideosView from '@/views/app/VideosView.vue'
 import IdeasView from '@/views/app/IdeasView.vue'
 import PromptsView from '@/views/app/PromptsView.vue'
+import WizardView  from '@/views/app/WizardView.Vue'
 
 const routes = [
   // {
@@ -48,6 +49,14 @@ const routes = [
     path: '/prompts',
     name: 'prompts',
     component: PromptsView
+  },
+  {
+    meta: {
+      title: 'Weather Data Wizard'
+    },
+    path: '/wizard',
+    name: 'wizard',
+    component: WizardView
   },
   // {
   //   meta: {

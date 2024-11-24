@@ -11,4 +11,11 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
   },
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "browser": true,
+    "es6": true
+  }
+
 };
