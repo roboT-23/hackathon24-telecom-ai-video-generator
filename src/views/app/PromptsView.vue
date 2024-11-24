@@ -19,7 +19,7 @@ const isCreatingPrompt = ref(false) // Indicates if the creation form is open
 const newPrompt = ref({
   name: '',
   description: '',
-  type: 'tutorial'
+  type: ['tutorial', 'weather_analysis']
 })
 
 // Fetch the list of prompts
@@ -116,7 +116,7 @@ onMounted(() => {
               class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800"
               required
             >
-              <option value="tutorial">Tutorial</option>
+              <option v-for="type in ['tutorial', 'weather_analysis']" :key="type" :value="type">{{ type }}</option>
               <!-- Ak pridáš ďalšie typy, môžu byť tu -->
             </select>
           </div>

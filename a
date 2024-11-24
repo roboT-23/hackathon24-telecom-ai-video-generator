@@ -1,0 +1,83 @@
+Based on the provided weather data and weather query response, generate a structured JSON object representing the video creation flow. This JSON should include multiple scenes, each containing the following elements:
+1. Intro Scene
+
+    type: Set as "intro".
+    duration: Duration of the intro scene (e.g., 5 seconds).
+    text: A brief introduction to the video (e.g., "Weather Recap for [time period or location]"). Ensure it dynamically incorporates the period from the weather query response.
+
+2. Data Visualization Scenes
+
+Each data visualization scene should include:
+
+    type: Set as "chart".
+    chart:
+        Title of the chart (e.g., "Weather Data for [Month]").
+        A description summarizing the data being shown.
+        Define the data categories: "temperature", "humidity", "rainfall", and "air_pollution", with corresponding values. Omit hardcoded data; instead, placeholder keys (e.g., values, labels, colors) should be used for dynamic rendering.
+    summary: A short analysis based on the chart's data, such as:
+        Hottest day.
+        Coldest day.
+        Most rainy day.
+        Any notable trends or anomalies.
+
+3. Structure
+
+    Include multiple scenes to handle each data segment (e.g., "September 2024", "October 2024").
+    Each scene should include detailed information for all categories.
+    For example:
+        "temperature" should highlight the highest and lowest temperatures.
+        "rainfall" should highlight days with significant precipitation.
+        "air_pollution" should include any notable changes, such as spikes caused by environmental factors.
+
+4. JSON Structure
+
+Use the following structure:
+
+{
+  "scenes": [
+    {
+      "type": "intro",
+      "duration": 5,
+      "text": "Weather Recap for September and October 2024"
+    },
+    {
+      "type": "chart",
+      "chart": {
+        "title": "Weather Data for September 2024",
+        "categories": [
+          { "label": "Temperature",  "color": "PLACEHOLDER" },
+          { "label": "Humidity",  "color": "PLACEHOLDER" },
+          { "label": "Rainfall",  "color": "PLACEHOLDER" },
+          { "label": "Air Pollution",  "color": "PLACEHOLDER" }
+        ]
+      },
+      "summary": {
+        "hottest_day": "PLACEHOLDER_DATE",
+        "coldest_day": "PLACEHOLDER_DATE",
+        "most_rainy_day": "PLACEHOLDER_DATE",
+        "details": "PLACEHOLDER_FOR_SUMMARY"
+      }
+    },
+    {
+      "type": "chart",
+      "chart": {
+        "title": "Weather Data for October 2024",
+        "categories": [
+          { "label": "Temperature",  "color": "PLACEHOLDER" },
+          { "label": "Humidity",  "color": "PLACEHOLDER" },
+          { "label": "Rainfall",  "color": "PLACEHOLDER" },
+          { "label": "Air Pollution",  "color": "PLACEHOLDER" }
+        ]
+      },
+      "summary": {
+        "hottest_day": "PLACEHOLDER_DATE",
+        "coldest_day": "PLACEHOLDER_DATE",
+        "most_rainy_day": "PLACEHOLDER_DATE",
+        "details": "PLACEHOLDER_FOR_SUMMARY"
+      }
+    }
+  ]
+}
+
+    Replace PLACEHOLDER keys with appropriate dynamic values based on the provided data.
+    Include no hardcoded data or unnecessary API fetches—just structure and placeholders.

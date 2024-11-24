@@ -19,7 +19,7 @@ const isCreatingIdea = ref(false) // Indicates if the creation form is open
 const newIdea = ref({
   name: '',
   description: '',
-  type: 'tutorial'
+  type: ['tutorial', 'weather_analysis']
 })
 
 // Fetch the list of ideas
@@ -112,7 +112,8 @@ onMounted(() => {
               class="px-3 py-2 max-w-full focus:ring focus:outline-none border-gray-700 rounded w-full dark:placeholder-gray-400 h-12 border bg-white dark:bg-slate-800"
               required
             >
-              <option value="tutorial">Tutorial</option>
+              //foreach idea type add option
+              <option v-for="type in ['tutorial', 'weather_analysis']" :key="type" :value="type">{{ type }}</option>
             </select>
           </div>
           <div class="flex justify-end space-x-2">
