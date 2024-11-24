@@ -25,6 +25,7 @@ const isCollapsed = ref(true)
 const weatherQueryResponse = ref(null)
 const existingWeatherQuery = ref(null) // Initialize as null
 const scenes = ref([])
+const generatedVideoPath = ref(null)
 
 
 // Fetch data for ideas, prompts, and wizards
@@ -232,6 +233,7 @@ const startVideoRendering = async () => {
     });
 
     videoGenerationProgress.value = response.data.message || 'Video successfully generated!';
+    fetchGeneratedVideo();
   } catch (err) {
     console.error('Error starting video rendering:', err.message);
     videoGenerationProgress.value = 'Failed to generate video. Please try again.';
@@ -239,6 +241,24 @@ const startVideoRendering = async () => {
 };
 
 
+const fetchGeneratedVideo = async () => {
+  try {
+    videoGenerationProgress.value = 'Fetching generated video...';
+
+    const response = await axios.get(`http://localhost:3000/api/videos/${wizardDetails.value.id}`);
+    const video = response.data.videos[0]; // Get the latest video for this wizard
+
+    if (video?.file_path) {
+      videoGenerationProgress.value = 'Video fetched successfully!';
+      generatedVideoPath.value = `http://localhost:3000/videos/${video.file_path}`;
+    } else {
+      videoGenerationProgress.value = 'No video found for this wizard.';
+    }
+  } catch (error) {
+    console.error('[ERROR] Fetching video:', error.message);
+    videoGenerationProgress.value = 'Failed to fetch video. Please try again.';
+  }
+};
 
 onMounted(() => {
   fetchIdeas()
@@ -455,6 +475,25 @@ onMounted(() => {
           <div v-if="videoGenerationProgress" class="mt-4 border border-blue-500 rounded p-4">
             <h4 class="text-blue-500 font-semibold">Video Generation Status</h4>
             <p>{{ videoGenerationProgress }}</p>
+          </div>
+
+          <!-- Display the generated video -->
+          <div v-if="generatedVideoPath" class="mt-4">
+            <h4 class="text-blue-500 font-semibold">Generated Video</h4>
+            <video
+              controls
+              class="border border-gray-300 rounded w-full max-w-lg mx-auto"
+            >
+              <source :src="generatedVideoPath" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <a
+              :href="generatedVideoPath"
+              download
+              class="mt-2 inline-block text-blue-600 hover:underline"
+            >
+              Download Video
+            </a>
           </div>
         </CardBox>
       </div>

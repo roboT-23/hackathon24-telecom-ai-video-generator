@@ -859,6 +859,25 @@ app.post('/api/videos', async (req, res) => {
     res.status(500).json({ error: 'Failed to add video record.' });
   }
 });
+app.get('/api/videos/:wizard_id', async (req, res) => {
+  const { wizard_id } = req.params;
+
+  try {
+    const [rows] = await db.promise().execute(
+      'SELECT * FROM videos WHERE wizard_id = ? ORDER BY created_at DESC',
+      [wizard_id]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'No videos found for this wizard.' });
+    }
+
+    res.status(200).json({ videos: rows });
+  } catch (error) {
+    console.error('[ERROR] Fetching videos:', error.message);
+    res.status(500).json({ error: 'Failed to fetch videos.' });
+  }
+});
 
 
 app.post('/api/create-video', async (req, res) => {
@@ -886,7 +905,7 @@ app.post('/api/create-video', async (req, res) => {
     console.log(`[INFO] Starting video generation with scenes:`, JSON.stringify(scenes, null, 2));
 
     // Prepare rendering command
-    const videoFileName = `video.mp4`; // Ensure unique filename
+    const videoFileName = `video.mp4`; // Unique filename
     const renderCommand = `npm run render-video`;
     console.log(`[INFO] Running render command: ${renderCommand}`);
 
@@ -923,8 +942,8 @@ app.post('/api/create-video', async (req, res) => {
 
       console.log(`[INFO] Inserting video metadata into database.`);
       await db.promise().execute(
-        `INSERT INTO videos (title, status, file_path, duration, format) VALUES (?, ?, ?, ?, ?)`,
-        [`Video for Wizard ${wizard_id}`, 'completed', filePath, duration, format]
+        `INSERT INTO videos (wizard_id, title, status, file_path, duration, format) VALUES (?, ?, ?, ?, ?, ?)`,
+        [wizard_id, `Video for Wizard ${wizard_id}`, 'completed', filePath, duration, format]
       );
 
       console.log(`[INFO] Video metadata saved to database.`);
@@ -958,6 +977,10 @@ app.post('/api/create-video', async (req, res) => {
     });
   }
 });
+
+
+// Serve videos from remotion/weather/out
+app.get('/videos/out', express.static(path.join(__dirname, '../remotion/weather/out')));
 
 
 const port = process.env.PORT || 3000;
