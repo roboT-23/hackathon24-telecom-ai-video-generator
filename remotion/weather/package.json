@@ -6,13 +6,20 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@remotion/animated-emoji": "4.0.231",
+    "@remotion/animation-utils": "4.0.231",
+    "@remotion/captions": "4.0.231",
     "@remotion/cli": "4.0.231",
+    "@remotion/gif": "4.0.231",
+    "@remotion/paths": "4.0.231",
+    "@remotion/shapes": "4.0.231",
+    "@remotion/tailwind": "4.0.231",
+    "@remotion/transitions": "4.0.231",
     "@remotion/zod-types": "4.0.231",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "remotion": "4.0.231",
-    "zod": "3.22.3",
-    "@remotion/tailwind": "4.0.231"
+    "zod": "3.22.3"
   },
   "devDependencies": {
     "@remotion/eslint-config": "4.0.231",

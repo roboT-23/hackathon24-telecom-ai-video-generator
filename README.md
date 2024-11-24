@@ -1,181 +1,115 @@
-# [Admin One &mdash; Free Vue 3.x Tailwind 3.x Admin Dashboard with dark mode](https://justboil.me/tailwind-admin-templates/free-vue-dashboard/)
+AI Data Visualizer
+==================
 
-[![version](https://img.shields.io/github/v/release/justboil/admin-one-vue-tailwind)](https://justboil.me/tailwind-admin-templates/free-vue-dashboard/)  [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://justboil.me/tailwind-admin-templates/free-vue-dashboard/)
+An automated video creation tool for visualizing data using GPT, Remotion, and custom workflows.
 
-### Tailwind 3.x Vue 3.x with Vite or Nuxt or Laravel
+Installation and Setup
+----------------------
 
-[![Free Vue 3 Tailwind 3 admin dashboard with dark mode](https://static.justboil.me/templates/one/repo-tailwind-vue.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+### Install Dependencies
 
-[![Vue Tailwind white & dark styles](https://static.justboil.me/templates/one/repo-styles.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+    npm install
 
-### Tailwind 3.x Vue 3.x with Vite or Nuxt or Laravel
+### Set Up Environment Variables
 
-**Admin One** is simple, beautiful and free Vue.js 3.x Tailwind CSS 3.x admin dashboard. Nuxt 3.x or Laravel 9.x integrations available
+Create a `.env` file in the root directory with the following keys:
 
-* Built with **Vue.js 3**, **Tailwind CSS 3** framework & **Composition API**
-* **Vite** under the hood &mdash; [Info](https://vitejs.dev)
-* **Nuxt 3** integration available &mdash; [Info](#nuxt-3-integration)
-* **Laravel Breeze Inertia Vue** integration available &mdash; [Info](#laravel-9x-integration)
-* **SFC** `<script setup>` &mdash; [Info](https://v3.vuejs.org/api/sfc-script-setup.html)
-* **Pinia** state library (official Vuex 5) &mdash; [Info](https://pinia.vuejs.org/)
-* **Dark mode**
-* **Styled** scrollbars
-* SPA with **Router**
-* **Production CSS** is only **&thickapprox;38kb**
-* Reusable components
-* Free under MIT License
-* [Premium version](https://justboil.me/tailwind-admin-templates/vue-dashboard/) available
 
-## Table of Contents
+    API_BASE_URL=http://localhost:3000/api
+    GPT_API_KEY=your-gpt-api-key
+    MYSQL_HOST=localhost
+    MYSQL_USER=root
+    MYSQL_PASSWORD=yourpassword
+    MYSQL_DATABASE=ai_data_visualizer
 
-* [React TypeScript version](#looking-for-react-typescript-version)
-* [Responsive layout](#responsive-layout)
-  * [Mobile & tablet](#mobile--tablet)
-  * [Small laptops](#small-laptops-1024px)
-  * [Laptops & desktops](#laptops--desktops)
-* [Demo](#demo)
-  * [Free dashboard demo](#free-dashboard-demo)
-  * [Premium dashboard demo](#premium-dashboard-demo)
-* [Quick Start](#quick-start)
-  * [Get code & install](#get-code--install)
-  * [Vite builds](#vite-builds)
-  * [Linting](#linting)
-  * [Nuxt 3.x integration](#nuxt-3x-integration)
-  * [Laravel 9.x integration](#laravel-9x-integration)
-* [Docs](#docs)
-* [Browser Support](#browser-support)
-* [Reporting Issues](#reporting-issues)
-* [Licensing](#licensing)
-* [Useful Links](#useful-links)
 
-## Looking for React TypeScript version?
+### Start the Backend
 
-This is **Tailwind Vue dashboard** version
+Run the Node.js server:
 
-Looking for **Tailwind React TypeScript**? Check [Admin One - React TypeScript Tailwind dashboard](https://github.com/justboil/admin-one-react-tailwind) version
+    node server.js
 
-## Responsive layout
+### Start the Frontend
 
-### Mobile & tablet
+Launch the development server:
 
-Mobile layout with hidden aside menu and collapsable cards & tables
+    npm run dev
 
-[![Free Vue 3 Tailwind CSS 3 admin dashboard](https://static.justboil.me/templates/one/one-tailwind-vue-mobile.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+### Run Remotion Studio
 
-### Small laptops 1024px
+Preview compositions and animations in the Remotion studio:
 
-Small laptop layout with show/hide aside menu option
+    npm start
 
-[![Free Vue 3 Tailwind CSS 3 admin dashboard](https://static.justboil.me/templates/one/one-tailwind-vue-1024.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+### Render a Video
 
-[![Free Vue 3 Tailwind CSS 3 admin dashboard](https://static.justboil.me/templates/one/one-tailwind-vue-1024-menu-open.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+Render the video with the following command:
 
-### Laptops & desktops
+    npx remotion render src/Root.tsx MainComposition out/video.mp4
 
-Classic layout with aside menus on the left
+How It Works
+------------
 
-[![Free Vue 3 Tailwind CSS 3 admin dashboard](https://static.justboil.me/templates/one/one-tailwind-vue-widescreen.png)](https://justboil.github.io/admin-one-vue-tailwind/)
+1.  **Define an Idea:**
 
-## Demo
+    Users can define simple one-liners like "Summarize weather data for the past two months."
 
-### Free Dashboard Demo
+2.  **Automated Scene Creation:**
 
-https://justboil.github.io/admin-one-vue-tailwind/
+    GPT generates structured JSON for scenes, including simulated or real data.
 
-### Premium Dashboard Demo
+3.  **Edit Scenes:**
 
-https://tailwind-vue.justboil.me/
+    Customize and preview scenes through modular React components.
 
-## Quick Start
+4.  **Render Video:**
 
-Get code & install. Then `dev` or `build` with [Vite](#vite-builds) or integrate with [Nuxt](#nuxt-3x-integration) or [Laravel](#laravel-9x-integration)
+    Automatically compose and render a complete video.
 
-* [Get code & install](#get-code--install)
-* [Vite builds](#vite-builds)
-* [Linting](#linting)
-* [Nuxt 3.x integration](#nuxt-3x-integration)
-* [Laravel 9.x integration](#laravel-9x-integration)
 
-### Get code & install
+Challenges
+----------
 
-#### Get the repo
+*   **Data Simulation:** OpenWeather API issues required creating simulated datasets.
+*   **Learning Curve:** Mastered the Remotion library within a short timeframe.
+*   **Prompt Engineering:** Designed effective GPT prompts to generate usable JSON for video compositions.
 
-* [Create new repo](https://github.com/justboil/admin-one-vue-tailwind/generate) with this template
-* &hellip; or clone this repo on GitHub
-* &hellip; or [download .zip](https://github.com/justboil/admin-one-vue-tailwind/archive/master.zip) from GitHub
+Accomplishments
+---------------
 
-#### Install
+*   Successfully integrated GPT and Remotion for automated video creation.
+*   Built a robust modular pipeline using Svelte, Node.js, and MySQL.
+*   Achieved dynamic scene rendering with minimal manual intervention.
 
-`cd` to project's dir and run `npm install`
+Future Plans
+------------
 
-### Vite builds
+*   **Universal Data Support:** Enable visualizations for diverse datasets and queries.
+*   **Enhanced Modularity:** Allow creating reusable video fragments.
+*   **Platform Integration:** Automate uploads to YouTube, TikTok, and Instagram.
 
-[Vite](https://vitejs.dev) is next Generation Frontend Tooling featuring unbundled web-development
+Contributing
+------------
 
-#### Hot-reloads for development
+1.  Fork the repository.
+2.  Create a new branch:
 
-```
-npm run dev
-```
+        git checkout -b feature-name
 
-#### Builds and minifies for production
+3.  Commit your changes:
 
-```
-npm run build
-```
+        git commit -m "Add feature-name"
 
-#### Serves recently built app
+4.  Push your branch and open a pull request.
 
-```
-npm run preview
-```
+License
+-------
 
-### Linting
+Licensed under the [MIT License](LICENSE).
 
-#### Lint
+Contact
+-------
 
-```
-npm run lint
-```
+**Author:** Róbert Fišer
 
-### Nuxt 3.x integration
-
-This dashboard can be integrated with Nuxt 3.x. [Check guide](https://github.com/justboil/admin-one-vue-tailwind/tree/master/.nuxt-guide) for more information
-
-### Laravel 9.x integration
-
-This dashboard can be integrated with Laravel 9.x Breeze Inertia + Vue.js stack. [Check guide](https://github.com/justboil/admin-one-vue-tailwind/tree/master/.laravel-guide) for more information
-
-## Docs
-
-Customization & info: https://justboil.github.io/docs/
-
-## Browser Support
-
-We try to make sure Dashboard works well in the latest versions of all major browsers
-
-<img src="https://justboil.me/images/browsers-svg/chrome.svg" width="64" height="64" alt="Chrome"> <img src="https://justboil.me/images/browsers-svg/firefox.svg" width="64" height="64" alt="Firefox"> <img src="https://justboil.me/images/browsers-svg/edge.svg" width="64" height="64" alt="Edge"> <img src="https://justboil.me/images/browsers-svg/safari.svg" width="64" height="64" alt="Safari"> <img src="https://justboil.me/images/browsers-svg/opera.svg" width="64" height="64" alt="Opera">
-
-## Reporting Issues
-
-JustBoil's free items are limited to community support on GitHub.
-
-The issue list is reserved exclusively for bug reports and feature requests. That means we do not accept usage questions. If you open an issue that does not conform to the requirements, it will be closed.
-
-1. Make sure that you are using the latest version of the Dashboard. Issues for outdated versions are irrelevant
-2. Provide steps to reproduce
-3. Provide an expected behavior
-4. Describe what is actually happening
-5. Platform, Browser & version as some issues may be browser specific
-
-## Licensing
-
-- Copyright &copy; 2019-2022 JustBoil.me (https://justboil.me)
-- Licensed under MIT
-
-## Useful Links
-
-- [JustBoil.me](https://justboil.me/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Vue.js 3](https://v3.vuejs.org/)
-- [Vite](https://vitejs.dev)
+**GitHub:** [https://github.com/https://github.com/](https://github.com/https://github.com/)
